@@ -46,6 +46,7 @@ export default function Navbar({ logoUrl, reservationUrl }) {
         <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ""}`}>
           <ul className={styles.navList}>
             <li><Link href="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+            <li><Link href="/about" onClick={() => setIsOpen(false)}>About Us</Link></li>
             <li><Link href="/semi-private" onClick={() => setIsOpen(false)}>Semi Private</Link></li>
             <li><Link href="/cocktail-bar" onClick={() => setIsOpen(false)}>Cocktail Bar</Link></li>
             <li><Link href="/whats-on" onClick={() => setIsOpen(false)}>What's On</Link></li>
