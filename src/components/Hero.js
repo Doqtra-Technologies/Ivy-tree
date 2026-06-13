@@ -3,16 +3,20 @@ import styles from "./Hero.module.css";
 export default function Hero({ videoUrl, heading, subheading, reservationUrl }) {
   return (
     <section id="home" className={styles.hero}>
-      {/* Background Video */}
-      <div className={styles.videoWrapper}>
-        <video 
-          className={styles.video}
-          src={videoUrl}
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
+      {/* Background Columns */}
+      <div className={styles.backgroundContainer}>
+        <div className={styles.leftColumn}></div>
+        <div className={styles.centerColumn}>
+          <video 
+            className={styles.video}
+            src="/homepage/banner/banner.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        </div>
+        <div className={styles.rightColumn}></div>
         <div className={styles.overlay}></div>
       </div>
 
