@@ -1,8 +1,19 @@
 .section {
-  background-color: var(--bg-secondary);
+  position: relative;
+  background-image: linear-gradient(rgba(10, 11, 10, 0.9), rgba(10, 11, 10, 0.9)), url('/gallery/6.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 8rem 1.5rem;
   border-top: 1px solid rgba(197, 160, 89, 0.1);
   border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+  min-height: calc(100vh - var(--header-height) - 2rem);
+}
+
+@media (max-width: 768px) {
+  .section {
+    background-attachment: scroll;
+  }
 }
 
 .layout {

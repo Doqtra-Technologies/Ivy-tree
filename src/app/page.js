@@ -1,5 +1,6 @@
 import { getSiteSettings } from "@/services/wordpress";
 import Hero from "@/components/Hero";
+import Highlights from "@/components/Highlights";
 
 export const revalidate = 60;
 
@@ -14,6 +15,7 @@ export default async function Home() {
         subheading={settings.hero.subheading}
         reservationUrl={settings.reservationUrl}
       />
+      <Highlights />
     </main>
   );
 }
