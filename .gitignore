@@ -1,0 +1,26 @@
+# Dependencies
+/node_modules
+/.pnpm-store
+
+# Next.js Build Outputs
+/.next
+/out
+
+# Production/Local configuration
+.env*.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Large Raw Asset Folders
+"WEBSITE DES & DEV"
+WEBSITE DES & DEV/
+/WEBSITE-DES-DEV
+/public/hero-video.mp4
