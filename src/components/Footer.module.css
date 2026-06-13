@@ -1,0 +1,185 @@
+.footer {
+  background-color: #050605;
+  padding: 5rem 1.5rem 2.5rem 1.5rem;
+  border-top: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  margin-bottom: 4rem;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  align-self: flex-start;
+}
+
+.tagline {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-weight: 1.8;
+  max-width: 400px;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+/* Social icons */
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  color: var(--color-gold);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.socials a:hover {
+  background-color: var(--color-gold);
+  color: var(--bg-primary);
+  border-color: var(--color-gold);
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Hours List */
+.hoursCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.divider {
+  width: 50px;
+  height: 1px;
+  background-color: var(--color-gold);
+  margin-bottom: 2rem;
+}
+
+.hoursList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.hoursItem {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.day {
+  font-weight: 400;
+  min-width: 100px;
+}
+
+.dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+  margin: 0 1rem;
+  height: 1px;
+}
+
+.time {
+  font-weight: 300;
+}
+
+/* Today highlight */
+.today {
+  color: var(--color-gold-bright);
+  font-weight: 600;
+  position: relative;
+}
+
+.today .day {
+  font-weight: 700;
+}
+
+.today .time {
+  font-weight: 600;
+}
+
+.today .dots {
+  border-bottom-color: rgba(197, 160, 89, 0.4);
+}
+
+.todayLabel {
+  background-color: var(--color-crimson);
+  color: var(--text-primary);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.4rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+  border-radius: 2px;
+}
+
+/* Copyright */
+.copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .logo {
+    align-self: center;
+  }
+  
+  .tagline {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .socials {
+    justify-content: center;
+  }
+  
+  .title, .divider {
+    align-self: center;
+  }
+  
+  .hoursItem {
+    font-size: 0.85rem;
+  }
+}
