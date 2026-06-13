@@ -1,6 +1,16 @@
 .section {
-  background-color: var(--bg-secondary);
+  position: relative;
+  background-image: linear-gradient(rgba(10, 11, 10, 0.9), rgba(10, 11, 10, 0.9)), url('/gallery/10.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   border-top: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+@media (max-width: 768px) {
+  .section {
+    background-attachment: scroll;
+  }
 }
 
 .layout {

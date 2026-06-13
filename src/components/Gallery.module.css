@@ -1,5 +1,16 @@
 .section {
-  background-color: var(--bg-primary);
+  position: relative;
+  background-image: linear-gradient(rgba(10, 11, 10, 0.92), rgba(10, 11, 10, 0.92)), url('/gallery/4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-top: 1px solid rgba(197, 160, 89, 0.1);
+}
+
+@media (max-width: 768px) {
+  .section {
+    background-attachment: scroll;
+  }
 }
 
 .grid {

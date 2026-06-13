@@ -2,7 +2,7 @@ import styles from "./SemiPrivate.module.css";
 
 export default function SemiPrivate({ intro, rooms }) {
   return (
-    <section id="semi-private" className="section-padding">
+    <section id="semi-private" className={`${styles.section} section-padding`}>
       <div className="container">
         {/* Section Heading */}
         <div className="heading-centered">

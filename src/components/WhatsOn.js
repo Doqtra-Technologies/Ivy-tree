@@ -2,7 +2,7 @@ import styles from "./WhatsOn.module.css";
 
 export default function WhatsOn({ intro }) {
   return (
-    <section id="whats-on" className="section-padding">
+    <section id="whats-on" className={`${styles.section} section-padding`}>
       <div className="container">
         {/* Section Heading */}
         <div className="heading-centered">
