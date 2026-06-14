@@ -56,6 +56,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           logoUrl={settings.logoUrl}
           openingHours={settings.footer.openingHours}
           socialLinks={settings.footer.socialLinks}
+          contact={settings.contact}
         />
       </body>
     </html>

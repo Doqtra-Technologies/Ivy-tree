@@ -24,7 +24,7 @@ export const mockData = {
     {
       id: "apollo",
       name: "Apollo Room",
-      capacity: "25 people",
+      capacity: "30 people",
       description: "A gorgeous, spacious dining space styled with premium accents, tailored for medium-sized celebrations and special private banquets.",
       imageUrl: "/rooms/apollo.png"
     },

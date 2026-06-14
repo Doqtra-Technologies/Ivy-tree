@@ -27,20 +27,50 @@ const roomImages = [
   { src: "/rooms/velvet.png", name: "Velvet Room" }
 ];
 
+const defaultRooms = [
+  {
+    id: "apollo",
+    name: "Apollo Room",
+    capacity: "30 people",
+    description: "A gorgeous, spacious dining space styled with premium accents, tailored for medium-sized celebrations and special private banquets.",
+    imageUrl: "/rooms/apollo.png"
+  },
+  {
+    id: "velvet",
+    name: "Velvet Room",
+    capacity: "6-8 people",
+    description: "An intimate and plush dining setting wrapped in rich velvet styling, perfect for private family gatherings or corporate dinners.",
+    imageUrl: "/rooms/velvet.png"
+  },
+  {
+    id: "luna",
+    name: "Luna Room",
+    capacity: "50 people",
+    description: "Our grandest semi-private event room offering a luxurious setting, complete with elegant lighting and premium finishes for large scale receptions.",
+    imageUrl: "/rooms/luna.jpeg"
+  }
+];
+
 export default function SemiPrivate({
   intro,
   rooms = [],
   reservationUrl = "https://www.opentable.co.uk/r/the-ivy-tree-romford?ref=4208"
 }: SemiPrivateProps) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const roomsList = rooms && rooms.length > 0 ? rooms : defaultRooms;
 
-  // Auto slide logic
+  // Helper to remove "Room" and "Area" from room name
+  const getCleanName = (name: string) => name.replace(/\s*(room|area)\s*/gi, "").trim();
+  
+  // State for active room bookmark
+  const [activeRoomId, setActiveRoomId] = useState("");
+
+  // Default active room to apollo if exists
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % roomImages.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
+    const hasApollo = roomsList.some((r) => r.id === "apollo");
+    setActiveRoomId(hasApollo ? "apollo" : roomsList[0]?.id || "");
+  }, [rooms]);
+
+  const activeRoom = roomsList.find((r) => r.id === activeRoomId) || roomsList[0];
 
   // Form state
   const [step, setStep] = useState(1);
@@ -57,6 +87,16 @@ export default function SemiPrivate({
     phone: "",
     notes: ""
   });
+
+  // Automatically sync form room selection with active tab selection
+  useEffect(() => {
+    if (activeRoom) {
+      setFormData((prev) => ({
+        ...prev,
+        room: `${getCleanName(activeRoom.name)} (Capacity: ${activeRoom.capacity})`
+      }));
+    }
+  }, [activeRoomId]);
 
   const handleNext = () => {
     setError("");
@@ -111,8 +151,8 @@ export default function SemiPrivate({
       </div>
 
       {/* Info Section */}
-      <div className="bg-brand-dark py-16 px-6 md:px-16 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-16">
+      <div className="bg-brand-dark pt-16 pb-6 px-6 md:px-16 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-12">
           {/* Left: Heading and Description */}
           <div className="md:col-span-7 flex flex-col items-start text-left">
             <div className="border border-white/20 px-4 py-1.5 mb-6 rounded-none">
@@ -134,67 +174,101 @@ export default function SemiPrivate({
               Capacities:
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-[3px] h-10 bg-brand-gold" />
-                <div>
-                  <span className="block text-white/50 text-[10px] uppercase tracking-wider mb-0.5">Luna Room:</span>
-                  <span className="text-white font-sans text-base font-semibold">50 people</span>
+              {roomsList.map((room) => (
+                <div key={room.id} className="flex items-start gap-4">
+                  <div className="w-[3px] h-10 bg-brand-gold" />
+                  <div>
+                    <span className="block text-white/50 text-[10px] uppercase tracking-wider mb-0.5">
+                      {getCleanName(room.name)}:
+                    </span>
+                    <span className="text-white font-sans text-base font-semibold">
+                      {room.capacity}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-[3px] h-10 bg-brand-gold" />
-                <div>
-                  <span className="block text-white/50 text-[10px] uppercase tracking-wider mb-0.5">Apollo Room:</span>
-                  <span className="text-white font-sans text-base font-semibold">25 people</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-[3px] h-10 bg-brand-gold" />
-                <div>
-                  <span className="block text-white/50 text-[10px] uppercase tracking-wider mb-0.5">Velvet Room:</span>
-                  <span className="text-white font-sans text-base font-semibold">6 - 8 people</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Sliding Image Gallery */}
-        <div className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-brand-secondary border border-white/5">
-          <AnimatePresence mode="wait">
+      {/* Tabs + Room Card Wrapper */}
+      <div className="max-w-6xl mx-auto px-6 md:px-16 pb-16">
+        
+        {/* Bookmarks/Tabs Bar */}
+        <div className="flex flex-wrap items-end justify-start gap-1">
+          {roomsList.map((room) => {
+            const isActive = activeRoomId === room.id;
+            const displayName = getCleanName(room.name);
+            return (
+              <button
+                key={room.id}
+                onClick={() => setActiveRoomId(room.id)}
+                className={`px-6 py-3.5 text-xs md:text-sm font-sans uppercase tracking-widest font-bold transition-all duration-300 rounded-none ${
+                  isActive 
+                    ? "bg-black text-white" 
+                    : "bg-[#121412] text-white/40 hover:text-white"
+                }`}
+              >
+                {displayName}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Room Display Section */}
+        <AnimatePresence mode="wait">
+          {activeRoom && (
             <motion.div
-              key={currentSlide}
+              key={activeRoom.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className="absolute inset-0 w-full h-full"
+              transition={{ duration: 0.3 }}
+              className="w-full flex flex-col mt-0"
             >
-              <Image
-                src={roomImages[currentSlide].src}
-                alt={roomImages[currentSlide].name}
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority
-              />
+              {/* Active Room Gold Card Header */}
+              <div className="bg-brand-gold px-8 py-10 md:px-12 md:py-10 text-left flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h2 className="font-sans font-bold text-2xl md:text-3xl lg:text-[36px] text-black uppercase tracking-widest leading-tight">
+                    {getCleanName(activeRoom.name)}
+                  </h2>
+                </div>
+                
+                <div className="flex flex-col items-start text-left md:pr-12">
+                  <span className="text-black/70 text-sm font-sans tracking-wide mb-1.5 font-medium">
+                    Capacities:
+                  </span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-[1.5px] h-[20px] bg-black/35" />
+                    <span className="text-black text-sm md:text-base tracking-wide font-semibold font-sans">
+                      {activeRoom.capacity}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Active Room Image */}
+              <div className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-brand-secondary border-x border-b border-white/5">
+                <Image
+                  src={activeRoom.imageUrl}
+                  alt={activeRoom.name}
+                  fill
+                  sizes="100vw"
+                  className="object-cover transition-all duration-700 hover:scale-[1.01]"
+                  priority
+                />
+              </div>
+
+              {/* Active Room Description */}
+              <div className="p-8 md:p-12 bg-brand-secondary/80 text-left border-x border-b border-white/5">
+                <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-4xl font-sans">
+                  {activeRoom.description}
+                </p>
+              </div>
             </motion.div>
-          </AnimatePresence>
-          
-          {/* Progress / Dot Indicators in the bottom-right */}
-          <div className="absolute bottom-6 right-6 flex gap-2.5 z-10 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
-            {roomImages.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  currentSlide === idx ? "bg-brand-gold w-6" : "bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Enquiry Form Section */}
@@ -353,13 +427,24 @@ export default function SemiPrivate({
                           </label>
                           <select
                             value={formData.room}
-                            onChange={(e) => setFormData({ ...formData, room: e.target.value })}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setFormData({ ...formData, room: val });
+                              const matchedRoom = roomsList.find(
+                                (r) => `${getCleanName(r.name)} (Capacity: ${r.capacity})` === val
+                              );
+                              if (matchedRoom) {
+                                setActiveRoomId(matchedRoom.id);
+                              }
+                            }}
                             className="w-full bg-[#121412] text-white px-4 py-3.5 border border-white/10 focus:outline-none focus:border-brand-gold text-sm transition-all rounded-none cursor-pointer"
                           >
                             <option value="No Preference">No Preference</option>
-                            <option value="Luna Room (Capacity: 50)">Luna Room (Capacity: 50)</option>
-                            <option value="Apollo Room (Capacity: 25)">Apollo Room (Capacity: 25)</option>
-                            <option value="Velvet Room (Capacity: 6-8)">Velvet Room (Capacity: 6-8)</option>
+                            {roomsList.map((room) => (
+                              <option key={room.id} value={`${getCleanName(room.name)} (Capacity: ${room.capacity})`}>
+                                {getCleanName(room.name)} (Capacity: {room.capacity})
+                              </option>
+                            ))}
                           </select>
                         </div>
                       </motion.div>
