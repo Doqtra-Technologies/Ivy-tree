@@ -14,7 +14,7 @@ interface EventItem {
   linkText: string;
 }
 
-const events: EventItem[] = [
+const originalEvents: EventItem[] = [
   {
     id: "dj-nights",
     title: "Weekly DJ Nights",
@@ -44,7 +44,7 @@ const events: EventItem[] = [
   },
   {
     id: "seasonal-events",
-    title: "Seasonal SoirÃ©es",
+    title: "Seasonal Soirées",
     subtitle: "Curated Calendar",
     description: "Celebrate key holiday events, private masterclasses, and exclusive wine tasting dinners hosted by guest experts.",
     imageUrl: "/gallery/IVY TREE  MAY POST (4).png",
@@ -53,7 +53,90 @@ const events: EventItem[] = [
   },
 ];
 
-export default function EventsSection() {
+const homepageEvents = [
+  {
+    id: "kids-eat-free",
+    title: "KIDS EAT FREE",
+    imageUrl: "/gallery/IVY TREE  MAY POST (3).png",
+  },
+  {
+    id: "bottomless-brunch",
+    title: "BOTTOMLESS PROSECCO BRUNCH",
+    imageUrl: "/gallery/IVY TREE  MAY POST (2).png",
+  },
+  {
+    id: "dj-nights",
+    title: "DJ NIGHTS",
+    imageUrl: "/gallery/IVY TREE  MAY POST (1).png",
+  },
+];
+
+interface EventsSectionProps {
+  isHomepage?: boolean;
+}
+
+export default function EventsSection({ isHomepage = false }: EventsSectionProps) {
+  if (isHomepage) {
+    return (
+      <section className="py-[120px] bg-brand-gold">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="font-serif text-3xl md:text-4xl lg:text-[40px] text-brand-dark uppercase tracking-[0.15em]"
+            >
+              EVENTS
+            </motion.h2>
+          </div>
+
+          {/* 3-Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16">
+            {homepageEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                className="flex flex-col items-center group"
+              >
+                {/* Title Above Image */}
+                <h3 className="font-serif text-sm md:text-base text-brand-dark font-bold uppercase tracking-wider text-center mb-6 min-h-[40px] flex items-center justify-center">
+                  {event.title}
+                </h3>
+                {/* Flyer Image Container */}
+                <div className="relative aspect-[3/4] w-full overflow-hidden border border-brand-dark/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                  <Image
+                    src={event.imageUrl}
+                    alt={event.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View More Button */}
+          <div className="flex justify-center">
+            <Link
+              href="/whats-on"
+              className="inline-block px-8 py-3 bg-brand-dark text-white border border-brand-dark font-sans font-bold text-xs uppercase tracking-widest hover:bg-transparent hover:text-brand-dark transition-all duration-300 shadow-md"
+            >
+              VIEW MORE
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Original What's On page version
   return (
     <section className="py-[120px] bg-brand-dark border-t border-white/5">
       <div className="container-content">
@@ -86,7 +169,7 @@ export default function EventsSection() {
 
         {/* 4-Card Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-sp-24">
-          {events.map((event, index) => (
+          {originalEvents.map((event, index) => (
             <motion.div
               key={event.id}
               initial={{ opacity: 0, y: 30 }}
