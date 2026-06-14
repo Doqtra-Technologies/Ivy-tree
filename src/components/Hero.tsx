@@ -18,12 +18,12 @@ export default function Hero({
 }: HeroProps) {
   return (
     <section className="relative w-full h-[calc(100vh-90px)] mt-[90px] bg-brand-dark overflow-hidden">
-      
+
       {/* 3-Panel Grid Background */}
       <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
-        
+
         {/* Left Panel - Hidden on mobile */}
-        <div className="hidden md:block relative h-full w-full border-r border-white/10">
+        <div className="hidden md:block relative h-full w-full">
           <Image
             src="/homepage/banner/left.png"
             alt="Ivy Tree Ambiance"
@@ -32,6 +32,8 @@ export default function Hero({
             priority
           />
           <div className="absolute inset-0 bg-black/30" />
+          {/* Vertical white divider line */}
+          <div className="absolute top-0 right-0 h-full w-[7px] bg-white z-10" />
         </div>
 
         {/* Center Panel */}
@@ -52,7 +54,7 @@ export default function Hero({
         </div>
 
         {/* Right Panel - Hidden on mobile */}
-        <div className="hidden md:block relative h-full w-full border-l border-white/10">
+        <div className="hidden md:block relative h-full w-full">
           <Image
             src="/homepage/banner/right.png"
             alt="Ivy Tree Drinks"
@@ -61,8 +63,16 @@ export default function Hero({
             priority
           />
           <div className="absolute inset-0 bg-black/30" />
+          {/* Vertical white divider line */}
+          <div className="absolute top-0 left-0 h-full w-[7px] bg-white z-10" />
         </div>
       </div>
+
+      {/* Foggy Vignette Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_25%,rgba(10,11,10,0.85)_100%)] pointer-events-none z-[15]" />
+      
+      {/* Bottom fog fade transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-[150px] bg-gradient-to-t from-brand-dark to-transparent pointer-events-none z-[15]" />
 
       {/* Floating Centered Text Overlay */}
       <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-sp-16">

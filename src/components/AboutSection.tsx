@@ -74,13 +74,6 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
-
-            {/* CTA Button */}
-            <div>
-              <Link href="/about" className="btn-gold">
-                Our Full Story
-              </Link>
-            </div>
           </motion.div>
 
         </div>

@@ -14,27 +14,35 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: "1",
-    author: "Sarah Jenkins",
-    text: "Absolutely phenomenal experience. The atmosphere is breathtaking, feeling very much like an exclusive Mayfair club but right here in Romford. The cocktails were mixed to perfection and the Mediterranean food was divine.",
+    author: "David John",
+    text: "Good choices of breakfast. The food was good and came quickly! Michaela look after us. Highly recommend!",
     rating: 5,
-    date: "2 weeks ago",
-    bgColor: "bg-[#d93025]"
+    date: "1 week ago",
+    bgColor: "bg-[#4285F4]"
   },
   {
     id: "2",
-    author: "David L.",
-    text: "We booked the semi-private dining area for my wife's 40th birthday. The staff went above and beyond to make it special. Premium service from start to finish. Highly recommend the lamb chops!",
+    author: "Tahir Khan",
+    text: "We were served by Sarah who exceeded our expectations with her professional approach and great service. This was equally matched by the wonderful food.",
     rating: 5,
-    date: "1 month ago",
-    bgColor: "bg-[#188038]"
+    date: "2 weeks ago",
+    bgColor: "bg-[#34A853]"
   },
   {
     id: "3",
-    author: "Emma Thompson",
-    text: "Stunning decor and exceptional service. It's rare to find a place that looks this good and actually delivers on the quality of food. The DJ on Saturday night created the perfect vibe.",
+    author: "MD ANISZZAMAN",
+    text: "The food was absolutely amazing, full of flavor and clearly made with care. The customer service was top-notch—everyone was so welcoming and attentive, which made the experience even better. You can really feel the warmth and hospitality from the moment you walk in. I'll definitely be coming back and recommending this place to others!",
     rating: 5,
-    date: "2 months ago",
-    bgColor: "bg-[#f29900]"
+    date: "3 weeks ago",
+    bgColor: "bg-[#FBBC05]"
+  },
+  {
+    id: "4",
+    author: "Yegor Prystavka",
+    text: "It was our first time in this restaurant. All the staff is very friendly, especially our waitress Sarah. We had 2 steaks and 1 paella, everything was very good, especially the paella. Nice atmosphere, we enjoyed the live music performance as well.",
+    rating: 5,
+    date: "1 month ago",
+    bgColor: "bg-[#EA4335]"
   }
 ];
 
@@ -133,9 +141,14 @@ export default function Testimonials() {
                 <p className="text-[#3c4043] text-[15px] leading-relaxed flex-grow">
                   {testimonial.text}
                 </p>
-                <button className="text-[#70757a] text-sm mt-3 text-left hover:text-gray-800 transition-colors font-medium">
+                <a 
+                  href="https://www.google.com/search?sca_esv=f6ab685adb5b71a7&sxsrf=ANbL-n46yL_SANObBgJoB-DsKABPz-Mvqg:1781448397036&q=ivy+tree+restaurant&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOZDpDlfpUaR_DEUZRo7CLHup_6AyDDC0vHPv4_v83fJQI9RK2ls19VVIwQQZPKq3ULJvpGp52VxvxZgz8VdeKHZK1kgL&sa=X&sqi=2&ved=2ahUKEwjjgJC3_IaVAxVfV2wGHWy4Jr8QrrQLegQIHRAB&biw=1536&bih=742&dpr=1.25"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#70757a] text-sm mt-3 text-left hover:text-gray-800 transition-colors font-medium inline-block"
+                >
                   Read more
-                </button>
+                </a>
               </div>
             ))}
           </div>
@@ -155,7 +168,12 @@ export default function Testimonials() {
         {/* Footer Text */}
         <div className="text-center mt-12 text-[#9aa0a6] text-[15px]">
           For more reviews, please visit our official{" "}
-          <a href="#" className="inline-flex items-center hover:opacity-80 transition-opacity">
+          <a 
+            href="https://www.google.com/search?sca_esv=f6ab685adb5b71a7&sxsrf=ANbL-n46yL_SANObBgJoB-DsKABPz-Mvqg:1781448397036&q=ivy+tree+restaurant&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOZDpDlfpUaR_DEUZRo7CLHup_6AyDDC0vHPv4_v83fJQI9RK2ls19VVIwQQZPKq3ULJvpGp52VxvxZgz8VdeKHZK1kgL&sa=X&sqi=2&ved=2ahUKEwjjgJC3_IaVAxVfV2wGHWy4Jr8QrrQLegQIHRAB&biw=1536&bih=742&dpr=1.25"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center hover:opacity-80 transition-opacity"
+          >
             <span className="font-medium tracking-wide">
               <span className="text-[#4285F4]">G</span>
               <span className="text-[#EA4335]">o</span>
