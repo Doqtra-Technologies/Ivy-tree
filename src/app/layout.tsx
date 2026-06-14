@@ -1,7 +1,19 @@
 import { getSiteSettings } from "@/services/wordpress";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
+import { ReactNode } from "react";
+
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
+
+const montserrat = Montserrat({ 
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 export const metadata = {
   title: "The Ivy Tree Romford | Mediterranean Dining & Cocktail Bar",
@@ -24,20 +36,22 @@ export const viewport = {
   initialScale: 1.0,
 };
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   const settings = await getSiteSettings();
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
       <head>
         <link rel="icon" href="/logo.png" />
       </head>
-      <body>
+      <body className="bg-brand-dark text-white antialiased font-sans flex flex-col min-h-screen">
         <Navbar 
           logoUrl={settings.logoUrl} 
           reservationUrl={settings.reservationUrl} 
         />
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
         <Footer 
           logoUrl={settings.logoUrl}
           openingHours={settings.footer.openingHours}

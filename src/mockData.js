@@ -3,7 +3,7 @@ export const mockData = {
   reservationUrl: "https://www.opentable.co.uk/r/the-ivy-tree-romford?ref=4208",
   
   hero: {
-    videoUrl: "/hero-video.mp4",
+    videoUrl: "/homepage/banner/banner.mp4",
     heading: "Experience the vibrant essence of Mediterranean dining",
     subheading: "Rustiq: A taste of the Mediterranean, served in the heart of Romford. Stylish interiors, a cozy ambiance, and a warm welcome await."
   },
