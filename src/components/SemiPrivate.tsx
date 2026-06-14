@@ -150,50 +150,8 @@ export default function SemiPrivate({
         </h1>
       </div>
 
-      {/* Info Section */}
-      <div className="bg-brand-dark pt-16 pb-6 px-6 md:px-16 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-12">
-          {/* Left: Heading and Description */}
-          <div className="md:col-span-7 flex flex-col items-start text-left">
-            <div className="border border-white/20 px-4 py-1.5 mb-6 rounded-none">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-white font-semibold">
-                GROUP DINING
-              </span>
-            </div>
-            <h2 className="font-serif text-2xl md:text-3xl text-white mb-6 leading-tight">
-              Enjoy a refined group dining experience at The Ivy Tree.
-            </h2>
-            <p className="text-white/70 text-sm md:text-base leading-relaxed">
-              Our thoughtfully designed spaces provide a stylish and comfortable setting, perfect for special occasions, business gatherings, or relaxed celebrations. Every detail is designed to make your experience seamless and memorable.
-            </p>
-          </div>
-
-          {/* Right: Capacities */}
-          <div className="md:col-span-5 flex flex-col items-start md:pl-12 text-left">
-            <h3 className="text-white font-sans font-bold text-lg mb-4 uppercase tracking-wider">
-              Capacities:
-            </h3>
-            <div className="space-y-4">
-              {roomsList.map((room) => (
-                <div key={room.id} className="flex items-start gap-4">
-                  <div className="w-[3px] h-10 bg-brand-gold" />
-                  <div>
-                    <span className="block text-white/50 text-[10px] uppercase tracking-wider mb-0.5">
-                      {getCleanName(room.name)}:
-                    </span>
-                    <span className="text-white font-sans text-base font-semibold">
-                      {room.capacity}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Tabs + Room Card Wrapper */}
-      <div className="max-w-6xl mx-auto px-6 md:px-16 pb-16">
+      <div className="max-w-6xl mx-auto px-6 md:px-16 pb-16 pt-16">
         
         {/* Bookmarks/Tabs Bar */}
         <div className="flex flex-wrap items-end justify-start gap-1">
