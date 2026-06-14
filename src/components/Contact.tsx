@@ -1,140 +1,275 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Contact() {
-  const openingHours = [
-    { days: "Mon - Wed", hours: "10:00 AM - 12:00 AM" },
-    { days: "Thursday", hours: "10:00 AM - 01:00 AM" },
-    { days: "Fri - Sat", hours: "10:00 AM - 02:00 AM" },
-    { days: "Sunday", hours: "10:00 AM - 12:00 AM" }
-  ];
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    message: "",
+    consent: false,
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, consent: e.target.checked }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        message: "",
+        consent: false,
+      });
+    }, 3000);
+  };
 
   return (
-    <section className="bg-brand-dark border-t border-white/5 relative overflow-hidden" id="contact">
-      <div className="flex flex-col lg:flex-row w-full min-h-[650px]">
-        
-        {/* Left Side: Contact details & hours */}
-        <div className="w-full lg:w-1/2 p-sp-32 md:p-sp-64 lg:py-[120px] lg:px-[120px] flex flex-col justify-center bg-brand-dark z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col text-left"
-          >
-            {/* Eyebrow */}
-            <span className="text-brand-gold uppercase tracking-[0.2em] text-[10px] md:text-xs font-semibold mb-sp-16 block">
-              GET IN TOUCH
-            </span>
-            {/* Heading */}
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-[48px] text-white uppercase tracking-wide mb-sp-48 leading-tight">
-              Contact & Enquiries
-            </h2>
-            
-            {/* Contact details list */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-sp-32 mb-sp-48">
-              
-              {/* Address */}
-              <div className="flex gap-sp-16 group">
-                <div className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center text-brand-gold bg-brand-secondary group-hover:bg-brand-gold group-hover:text-brand-dark transition-all duration-300 flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-white text-xs uppercase tracking-widest font-semibold mb-sp-8">Address</h4>
-                  <p className="text-white/60 text-xs leading-relaxed font-sans">
-                    113-117 South St<br />
-                    Romford, Essex<br />
-                    RM1 1NX
-                  </p>
-                </div>
-              </div>
+    <section className="bg-brand-secondary py-20 border-t border-white/5 relative overflow-hidden" id="contact">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          
+          {/* Left Column: Contact details & Hours */}
+          <div className="lg:col-span-5 flex flex-col text-left">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="font-serif text-3xl md:text-4xl text-white uppercase tracking-wider mb-12">
+                Contact Us
+              </h2>
 
-              {/* Phone */}
-              <div className="flex gap-sp-16 group">
-                <div className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center text-brand-gold bg-brand-secondary group-hover:bg-brand-gold group-hover:text-brand-dark transition-all duration-300 flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.387a12.035 12.035 0 0 1-7.108-7.108c-.155-.44.01-1.29.387-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-white text-xs uppercase tracking-widest font-semibold mb-sp-8">Reservations</h4>
-                  <a href="tel:01708208566" className="text-white/60 hover:text-brand-gold text-xs font-sans transition-colors">
-                    01708 208566
-                  </a>
-                </div>
-              </div>
+              {/* Timeline Info List */}
+              <div className="relative pl-12 flex flex-col gap-12 mb-16">
+                {/* Vertical Dotted Line */}
+                <div className="absolute left-[20px] top-6 bottom-6 w-0 border-l-2 border-dotted border-white/25 z-0" />
 
-              {/* Email */}
-              <div className="flex gap-sp-16 group">
-                <div className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center text-brand-gold bg-brand-secondary group-hover:bg-brand-gold group-hover:text-brand-dark transition-all duration-300 flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                  </svg>
+                {/* Call Us */}
+                <div className="relative flex items-start">
+                  <div className="absolute left-[-48px] w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-dark z-10 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.387a12.035 12.035 0 0 1-7.108-7.108c-.155-.44.01-1.29.387-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-white text-xs font-bold tracking-[0.2em] uppercase underline decoration-brand-gold decoration-2 underline-offset-4 pb-1">
+                      CALL US
+                    </span>
+                    <a href="tel:01708208566" className="text-white/80 hover:text-brand-gold text-sm font-sans tracking-wide transition-colors mt-2">
+                      01708 208566
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-white text-xs uppercase tracking-widest font-semibold mb-sp-8">Enquiries</h4>
-                  <a href="mailto:info.theivytree@gmail.com" className="text-white/60 hover:text-brand-gold text-xs font-sans transition-colors">
-                    info.theivytree@gmail.com
-                  </a>
-                </div>
-              </div>
 
-              {/* Opening Hours Summary */}
-              <div className="flex gap-sp-16 group">
-                <div className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center text-brand-gold bg-brand-secondary group-hover:bg-brand-gold group-hover:text-brand-dark transition-all duration-300 flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
+                {/* Email */}
+                <div className="relative flex items-start">
+                  <div className="absolute left-[-48px] w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-dark z-10 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-white text-xs font-bold tracking-[0.2em] uppercase underline decoration-brand-gold decoration-2 underline-offset-4 pb-1">
+                      EMAIL
+                    </span>
+                    <a href="mailto:info.theivytree@gmail.com" className="text-white/80 hover:text-brand-gold text-sm font-sans tracking-wide transition-colors mt-2">
+                      info.theivytree@gmail.com
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-white text-xs uppercase tracking-widest font-semibold mb-sp-8">Opening Hours</h4>
-                  <div className="flex flex-col gap-sp-8 text-white/60 text-xs font-sans">
-                    {openingHours.map((slot, idx) => (
-                      <div key={idx} className="flex gap-sp-8 justify-between border-b border-white/5 pb-1">
-                        <span className="font-medium">{slot.days}</span>
-                        <span>{slot.hours}</span>
-                      </div>
-                    ))}
+
+                {/* Address */}
+                <div className="relative flex items-start">
+                  <div className="absolute left-[-48px] w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-dark z-10 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-white text-xs font-bold tracking-[0.2em] uppercase underline decoration-brand-gold decoration-2 underline-offset-4 pb-1">
+                      ADDRESS
+                    </span>
+                    <p className="text-white/80 text-sm font-sans tracking-wide mt-2 leading-relaxed">
+                      113-117 South St, Romford RM1 1NX
+                    </p>
                   </div>
                 </div>
               </div>
 
-            </div>
+              {/* Opening Hours Section */}
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <h3 className="text-white text-xs md:text-sm font-bold tracking-[0.2em] uppercase flex-shrink-0">
+                    Opening Hours
+                  </h3>
+                  <div className="flex-grow h-[1px] bg-white/10" />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-white/60 text-xs md:text-sm leading-relaxed font-sans">
+                  <div>
+                    <span className="block font-semibold text-white/80 mb-0.5">Monday – Wednesday</span>
+                    <span className="block">10:00 AM – 12:00 AM</span>
+                  </div>
+                  <div>
+                    <span className="block font-semibold text-white/80 mb-0.5">Thursday</span>
+                    <span className="block">10:00 AM – 01:00 AM</span>
+                  </div>
+                  <div>
+                    <span className="block font-semibold text-white/80 mb-0.5">Friday & Saturday</span>
+                    <span className="block">10:00 AM – 02:00 AM</span>
+                  </div>
+                  <div>
+                    <span className="block font-semibold text-white/80 mb-0.5">Sunday</span>
+                    <span className="block">10:00 AM – 12:00 AM</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
-            {/* Direct Enquiry CTA */}
-            <div>
-              <a href="/contact" className="btn-gold">
-                Send Direct Enquiry
-              </a>
-            </div>
-          </motion.div>
+          {/* Right Column: Contact Form */}
+          <div className="lg:col-span-7 flex flex-col text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-full"
+            >
+              <h2 className="font-serif text-3xl md:text-4xl text-white uppercase tracking-wider mb-12">
+                Get in Touch
+              </h2>
+
+              {submitted ? (
+                <div className="bg-brand-gold/10 border border-brand-gold/30 p-8 rounded-[8px] text-center">
+                  <h4 className="font-serif text-brand-gold text-lg mb-2 uppercase tracking-wide">Thank You!</h4>
+                  <p className="text-white/80 text-sm">Your message has been sent successfully. We will get back to you shortly.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Row 1: Name and Last Name */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex flex-col">
+                      <label className="text-white/60 text-xs uppercase tracking-wider mb-2 font-medium">
+                        Name <span className="text-[#c25336]">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className="w-full bg-white text-black px-4 py-3 border border-gray-300 focus:outline-none focus:border-brand-gold text-sm transition-all"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <label className="text-white/60 text-xs uppercase tracking-wider mb-2 font-medium">
+                        Last Name <span className="text-[#c25336]">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="w-full bg-white text-black px-4 py-3 border border-gray-300 focus:outline-none focus:border-brand-gold text-sm transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 2: Phone */}
+                  <div className="flex flex-col">
+                    <label className="text-white/60 text-xs uppercase tracking-wider mb-2 font-medium">
+                      Phone <span className="text-[#c25336]">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full bg-white text-black px-4 py-3 border border-gray-300 focus:outline-none focus:border-brand-gold text-sm transition-all"
+                    />
+                  </div>
+
+                  {/* Row 3: Email */}
+                  <div className="flex flex-col">
+                    <label className="text-white/60 text-xs uppercase tracking-wider mb-2 font-medium">
+                      Email <span className="text-[#c25336]">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full bg-white text-black px-4 py-3 border border-gray-300 focus:outline-none focus:border-brand-gold text-sm transition-all"
+                    />
+                  </div>
+
+                  {/* Row 4: Message */}
+                  <div className="flex flex-col">
+                    <label className="text-white/60 text-xs uppercase tracking-wider mb-2 font-medium">
+                      Message <span className="text-[#c25336]">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={5}
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="w-full bg-white text-black px-4 py-3 border border-gray-300 focus:outline-none focus:border-brand-gold text-sm transition-all resize-none"
+                    />
+                  </div>
+
+                  {/* Checkbox consent */}
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="consent"
+                      required
+                      checked={formData.consent}
+                      onChange={handleCheckboxChange}
+                      className="mt-1 flex-shrink-0 cursor-pointer accent-brand-gold"
+                    />
+                    <label htmlFor="consent" className="text-white/40 text-xs leading-relaxed cursor-pointer select-none font-medium">
+                      I consent to having this website store my submitted information so they can respond to my inquiry. <span className="text-[#c25336]">*</span>
+                    </label>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div>
+                    <button
+                      type="submit"
+                      className="px-10 py-4 bg-[#c25336] hover:bg-[#b04328] text-white font-sans font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-md"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              )}
+            </motion.div>
+          </div>
+
         </div>
-
-        {/* Right Side: Luxury Dark Google Map */}
-        <motion.div 
-          className="w-full lg:w-1/2 min-h-[400px] lg:min-h-full bg-brand-secondary relative border-l border-white/5"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        >
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.5878235284144!2d0.17937557723961175!3d51.57576597182811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a4f009e4a3b1%3A0xe5c35bcf68e54737!2s113-117%20South%20St%2C%20Romford%20RM1%201NX!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0, filter: "grayscale(1) invert(0.9) contrast(0.85)" }} 
-            allowFullScreen={true} 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="The Ivy Tree Location Map"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </motion.div>
-
       </div>
     </section>
   );

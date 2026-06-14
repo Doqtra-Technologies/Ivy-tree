@@ -57,18 +57,57 @@ const homepageEvents = [
   {
     id: "kids-eat-free",
     title: "KIDS EAT FREE",
-    imageUrl: "/gallery/IVY TREE  MAY POST (3).png",
+    imageUrl: "/events/kids-eat-free_page-0001.jpg",
   },
   {
     id: "bottomless-brunch",
     title: "BOTTOMLESS PROSECCO BRUNCH",
-    imageUrl: "/gallery/IVY TREE  MAY POST (2).png",
+    imageUrl: "/events/bottomless-brunch_page-0001.jpg",
   },
   {
     id: "dj-nights",
     title: "DJ NIGHTS",
-    imageUrl: "/gallery/IVY TREE  MAY POST (1).png",
+    imageUrl: "/events/dj-nights_page-0001.jpg",
   },
+];
+
+const whatsOnEvents = [
+  {
+    id: "kids-eat-free",
+    eyebrow: "FAMILY SPECIAL",
+    title: "KIDS EAT FREE",
+    description: "Bring the whole family along! Children dine free with every adult main course purchased, Sunday through Thursday.",
+    imageUrl: "/events/kids-eat-free_page-0001.jpg",
+    pdfUrl: "/events/kids-eat-free.pdf",
+    pdfName: "kids-eat-free.pdf",
+    buttonText: "DISCOVER MORE",
+    buttonSuffix: "›",
+    isComingSoon: false
+  },
+  {
+    id: "bottomless-brunch",
+    eyebrow: "SATURDAY & SUNDAY",
+    title: "BOTTOMLESS BRUNCH",
+    description: "Indulge in our famous bottomless brunch. Delicious plates paired with unlimited prosecco, cocktails, and great music.",
+    imageUrl: "/events/bottomless-brunch_page-0001.jpg",
+    pdfUrl: "/events/bottomless-brunch.pdf",
+    pdfName: "bottomless-brunch.pdf",
+    buttonText: "DISCOVER MORE",
+    buttonSuffix: "›",
+    isComingSoon: false
+  },
+  {
+    id: "dj-nights",
+    eyebrow: "FRIDAY & SATURDAY",
+    title: "WEEKLY DJ NIGHTS",
+    description: "Elevate your weekend at our upstairs bar and lounge. Live sets from resident DJs playing the best beats till late.",
+    imageUrl: "/events/dj-nights_page-0001.jpg",
+    pdfUrl: "/events/dj-nights.pdf",
+    pdfName: "dj-nights.pdf",
+    buttonText: "DISCOVER MORE",
+    buttonSuffix: "→",
+    isComingSoon: false
+  }
 ];
 
 interface EventsSectionProps {
@@ -135,101 +174,81 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
       </section>
     );
   }
-
-  // Original What's On page version
+  // Original What's On page version
   return (
-    <section className="py-[120px] bg-brand-dark border-t border-white/5">
-      <div className="container-content">
-        
-        {/* Section Header */}
-        <div className="text-center mb-sp-64">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center"
-          >
-            {/* Eyebrow */}
-            <span className="text-brand-gold uppercase tracking-[0.2em] text-[10px] md:text-xs font-semibold mb-sp-16 block">
-              EXPERIENCE
-            </span>
-            {/* Heading */}
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-[48px] text-white uppercase tracking-wide mb-sp-16">
-              What's On
-            </h2>
-            {/* Description */}
-            <p className="text-white/60 text-xs md:text-sm font-sans tracking-wide max-w-[600px] mb-sp-24">
-              Explore our upcoming calendar of high-end events and curated luxury experiences.
-            </p>
-            {/* Divider */}
-            <div className="w-12 h-[1px] bg-brand-gold" />
-          </motion.div>
-        </div>
+    <div className="bg-brand-dark min-h-screen">
+      {/* Gold Header Bar */}
+      <div className="py-12 text-center bg-brand-gold">
+        <h1 className="font-sans font-bold text-2xl md:text-3xl uppercase tracking-[0.2em] text-black">
+          WHAT'S ON
+        </h1>
+      </div>
 
-        {/* 4-Card Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-sp-24">
-          {originalEvents.map((event, index) => (
+      {/* 3-Card Responsive Grid */}
+      <div className="bg-brand-dark py-20 px-6 md:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {whatsOnEvents.map((event, index) => (
             <motion.div
               key={event.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className="flex flex-col h-full bg-brand-secondary rounded-[12px] overflow-hidden group shadow-[0_15px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-gold/20 transition-colors duration-500"
+              className="relative aspect-[3/4] w-full overflow-hidden flex flex-col justify-between p-8 md:p-10 text-center group rounded-none border border-white/5 shadow-2xl"
             >
-              {/* Event Image */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
-                <Image
-                  src={event.imageUrl}
-                  alt={event.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-103"
-                />
-                {/* Dark gradient overlay on image */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-secondary via-black/10 to-transparent" />
-                
-                {/* Subtitle / Date Badge over Image */}
-                <div className="absolute bottom-sp-16 left-sp-16 bg-brand-dark/80 backdrop-blur-sm px-sp-12 py-sp-8 border border-brand-gold/30 rounded-[4px]">
-                  <span className="text-[10px] uppercase tracking-wider text-brand-gold font-semibold">
-                    {event.subtitle}
-                  </span>
-                </div>
-              </div>
+              {/* Card Background Image */}
+              <Image
+                src={event.imageUrl}
+                alt={event.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority={index < 3}
+              />
+              {/* Dark Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/80 z-10 transition-opacity duration-300 group-hover:opacity-95" />
 
-              {/* Event Content */}
-              <div className="flex flex-col flex-grow p-sp-24">
-                <h3 className="font-serif text-lg text-white mb-sp-12 uppercase tracking-wide group-hover:text-brand-gold transition-colors duration-300">
-                  {event.title}
-                </h3>
-                <p className="text-white/60 text-xs leading-relaxed mb-sp-24 flex-grow">
-                  {event.description}
-                </p>
-                <div className="mt-auto">
-                  <Link
-                    href={event.linkUrl}
-                    className="inline-flex items-center text-[10px] uppercase tracking-[0.2em] text-brand-gold hover:text-white transition-colors font-semibold"
-                  >
-                    {event.linkText}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2.5"
-                      stroke="currentColor"
-                      className="w-3.5 h-3.5 ml-sp-8 transition-transform group-hover:translate-x-1"
+              {/* Card Content Overlay */}
+              <div className="relative z-20 h-full flex flex-col justify-between items-center py-4">
+                {/* Top: Eyebrow */}
+                <span className="text-brand-gold uppercase tracking-[0.25em] text-[10px] md:text-xs font-semibold font-sans">
+                  {event.eyebrow}
+                </span>
+
+                {/* Center: Title, Separator & Description */}
+                <div className="flex flex-col items-center my-auto">
+                  <h3 className="font-serif text-2xl md:text-3xl text-white font-bold uppercase tracking-wider italic leading-snug">
+                    {event.title}
+                  </h3>
+                  <div className="flex items-center justify-center my-4">
+                    <div className="w-1.5 h-1.5 bg-brand-gold rotate-45" />
+                  </div>
+                  <p className="text-white/85 text-xs md:text-sm leading-relaxed font-sans max-w-[280px]">
+                    {event.description}
+                  </p>
+                </div>
+
+                {/* Bottom: CTA Link */}
+                <div>
+                  {event.isComingSoon ? (
+                    <span className="inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.25em] text-brand-gold/60 font-semibold cursor-default">
+                      {event.buttonText} {event.buttonSuffix}
+                    </span>
+                  ) : (
+                    <a
+                      href={event.pdfUrl}
+                      download={event.pdfName}
+                      className="inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.25em] text-brand-gold hover:text-white transition-colors font-semibold group/btn cursor-pointer"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </Link>
+                      {event.buttonText} {event.buttonSuffix}
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
-    </section>
+    </div>
   );
 }

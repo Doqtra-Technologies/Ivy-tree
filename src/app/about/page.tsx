@@ -1,5 +1,4 @@
 import AboutSection from "@/components/AboutSection";
-import GallerySection from "@/components/GallerySection";
 
 export default function AboutPage() {
   return (
@@ -9,7 +8,6 @@ export default function AboutPage() {
         <div className="w-12 h-[1px] bg-brand-gold mx-auto mt-sp-16" />
       </div>
       <AboutSection />
-      <GallerySection />
     </main>
   );
 }
