@@ -254,6 +254,19 @@ export default function Footer({
           </div>
 
         </div>
+
+        {/* Horizontal Divider Line */}
+        <hr className="border-t border-[#1a1a1a] mt-12 mb-8" />
+
+        {/* Copyright Section */}
+        <div className="flex flex-col items-center justify-center text-center text-[11px] tracking-[0.2em] font-sans text-white/50 gap-2">
+          <p className="uppercase">
+            IVYTREEESSEX.CO.UK &copy; 2026
+          </p>
+          <p className="text-[10px] tracking-[0.15em] uppercase">
+            CREATED BY <span className="text-[#ff0000] font-semibold normal-case">Gourmetica</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
