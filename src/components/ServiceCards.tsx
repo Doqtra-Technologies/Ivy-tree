@@ -17,7 +17,7 @@ const offerings: Offering[] = [
   {
     id: "semi-private",
     title: "SEMI PRIVATE",
-    description: "Dine in our exclusive semi private Rooms at Rustiq. Semi private here is a luxurious and indulgent experience.",
+    description: "Dine in our exclusive semi private Rooms at Ivy Tree. Semi private here is a luxurious and indulgent experience.",
     imageUrl: "/rooms/velvet.png",
     linkUrl: "/semi-private",
     linkText: "Read More →",
@@ -25,7 +25,7 @@ const offerings: Offering[] = [
   {
     id: "cocktail-bar",
     title: "COCKTAIL BAR",
-    description: "Enjoy expertly crafted cocktails at our upstairs Cocktail Bar at Rustiq.",
+    description: "Enjoy expertly crafted cocktails at our Cocktail Bar at Ivy Tree.",
     imageUrl: "/cocktail-bar.png",
     linkUrl: "/cocktail-bar",
     linkText: "View Menu →",
