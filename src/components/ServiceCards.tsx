@@ -32,9 +32,13 @@ const offerings: Offering[] = [
   },
 ];
 
-export default function ServiceCards() {
+interface ServiceCardsProps {
+  bgColor?: string;
+}
+
+export default function ServiceCards({ bgColor = "bg-brand-gold" }: ServiceCardsProps) {
   return (
-    <section className="py-[120px] bg-brand-gold">
+    <section className={`py-[80px] md:py-[120px] ${bgColor}`}>
       <div className="max-w-6xl mx-auto px-6">
         {/* 2-Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">

@@ -180,7 +180,7 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
       {/* Gold Header Bar */}
       <div className="py-12 text-center bg-brand-gold">
         <h1 className="font-sans font-bold text-2xl md:text-3xl uppercase tracking-[0.2em] text-black">
-          WHAT'S ON
+          EVENTS
         </h1>
       </div>
 
