@@ -117,10 +117,10 @@ interface EventsSectionProps {
 export default function EventsSection({ isHomepage = false }: EventsSectionProps) {
   if (isHomepage) {
     return (
-      <section className="py-[120px] bg-brand-gold">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-[60px] bg-brand-gold">
+        <div className="max-w-[1300px] mx-auto px-4 md:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
           </div>
 
           {/* 3-Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-[1300px] mx-auto mb-10">
             {homepageEvents.map((event, index) => (
               <motion.div
                 key={event.id}
@@ -144,11 +144,11 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
                 className="flex flex-col items-center group"
               >
                 {/* Title Above Image */}
-                <h3 className="font-serif text-sm md:text-base text-brand-dark font-bold uppercase tracking-wider text-center mb-6 min-h-[40px] flex items-center justify-center">
+                <h3 className="font-serif text-sm md:text-base text-brand-dark font-bold uppercase tracking-wider text-center mb-4 min-h-[20px] flex items-center justify-center">
                   {event.title}
                 </h3>
                 {/* Flyer Image Container */}
-                <div className="relative aspect-[3/4] w-full overflow-hidden border border-brand-dark/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                <div className="relative aspect-[2/3] w-full overflow-hidden border border-brand-dark/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
                   <Image
                     src={event.imageUrl}
                     alt={event.title}
