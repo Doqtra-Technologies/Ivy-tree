@@ -29,18 +29,18 @@ const roomImages = [
 
 const defaultRooms = [
   {
-    id: "apollo",
-    name: "Apollo Room",
-    capacity: "30 people",
-    description: "A gorgeous, spacious dining space styled with premium accents, tailored for medium-sized celebrations and special private banquets.",
-    imageUrl: "/rooms/apollo.png"
-  },
-  {
     id: "velvet",
     name: "Velvet Room",
     capacity: "6-8 people",
     description: "An intimate and plush dining setting wrapped in rich velvet styling, perfect for private family gatherings or corporate dinners.",
     imageUrl: "/rooms/velvet.png"
+  },
+  {
+    id: "apollo",
+    name: "Apollo Room",
+    capacity: "30 people",
+    description: "A gorgeous, spacious dining space styled with premium accents, tailored for medium-sized celebrations and special private banquets.",
+    imageUrl: "/rooms/apollo.png"
   },
   {
     id: "luna",

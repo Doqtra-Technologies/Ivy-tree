@@ -11,10 +11,10 @@ export default function AboutSection() {
           
           {/* Left Side: Image */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full aspect-[4/3] overflow-hidden shadow-2xl border border-white/10"
           >
             <Image
@@ -23,15 +23,16 @@ export default function AboutSection() {
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
+              priority
             />
           </motion.div>
 
           {/* Right Side: Text Content (Centered like Rustiq) */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col text-center items-center px-2 md:px-6"
           >
             {/* Main Heading */}

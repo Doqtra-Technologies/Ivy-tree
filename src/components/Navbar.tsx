@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,6 +13,15 @@ interface NavbarProps {
 
 export default function Navbar({ logoUrl = "/logo.png", reservationUrl }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "ABOUT US", href: "/about" },
@@ -26,8 +35,14 @@ export default function Navbar({ logoUrl = "/logo.png", reservationUrl }: Navbar
 
   return (
     <>
-      {/* Fixed Solid Dark Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-[90px] w-full bg-[#0d0d0d] border-b border-white/5">
+      {/* Dynamic Navbar */}
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 h-[90px] w-full transition-all duration-500 ${
+          isScrolled 
+            ? "bg-[#0d0d0d]/95 backdrop-blur-md shadow-lg border-b border-white/10 py-0" 
+            : "bg-transparent border-b border-transparent py-2"
+        }`}
+      >
         <div className="max-w-[1440px] mx-auto px-sp-16 md:px-sp-32 h-full flex items-center justify-between">
           
           {/* Logo - Left */}

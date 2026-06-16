@@ -45,10 +45,10 @@ export default function ServiceCards({ bgColor = "bg-brand-gold" }: ServiceCards
           {offerings.map((offering, index) => (
             <motion.div
               key={offering.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+              transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="relative h-[380px] md:h-[420px] w-full overflow-hidden group rounded-[16px] border border-white/5 hover:border-brand-gold/25 shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-500"
             >
               {/* Background Image */}
