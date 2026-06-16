@@ -48,10 +48,10 @@ export const mockData = {
     subtitle: "Events & Promotions",
     events: [
       {
-        id: "kids-eat-free",
-        title: "KIDS EAT FREE",
-        description: "Join us during school holidays for family-friendly dining where kids eat completely free. Check out our special menu.",
-        pdfUrl: "/events/kids-eat-free.pdf"
+        id: "happy-hour",
+        title: "HAPPY HOUR",
+        description: "Join us for Happy Hour! Enjoy 2-for-1 cocktails, draft beers, and select wines in our luxurious lounge bar.",
+        pdfUrl: ""
       },
       {
         id: "bottomless-brunch",
