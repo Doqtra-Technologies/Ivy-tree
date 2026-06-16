@@ -55,32 +55,31 @@ const originalEvents: EventItem[] = [
 
 const homepageEvents = [
   {
-    id: "kids-eat-free",
-    title: "KIDS EAT FREE",
-    imageUrl: "/events/kids-eat-free_page-0001.jpg",
+    id: "happy-hour",
+    title: "HAPPY HOUR",
+    imageUrl: "/events/happy-hour.jpeg",
   },
   {
     id: "bottomless-brunch",
     title: "BOTTOMLESS PROSECCO BRUNCH",
-    imageUrl: "/events/bottomless-brunch_page-0001.jpg",
+    imageUrl: "/events/bottomless-brunch.jpeg",
   },
   {
     id: "dj-nights",
     title: "DJ NIGHTS",
-    imageUrl: "/events/dj-nights_page-0001.jpg",
+    imageUrl: "/events/dj-nights.jpeg",
   },
 ];
 
 const whatsOnEvents = [
   {
-    id: "kids-eat-free",
-    eyebrow: "FAMILY SPECIAL",
-    title: "KIDS EAT FREE",
-    description: "Bring the whole family along! Children dine free with every adult main course purchased, Sunday through Thursday.",
-    imageUrl: "/events/kids-eat-free_page-0001.jpg",
-    pdfUrl: "/events/kids-eat-free.pdf",
-    pdfName: "kids-eat-free.pdf",
-    buttonText: "DISCOVER MORE",
+    id: "happy-hour",
+    eyebrow: "WEEKDAYS SPECIAL",
+    title: "HAPPY HOUR",
+    description: "Join us for Happy Hour! Enjoy 2-for-1 cocktails, draft beers, and select wines in our luxurious lounge bar.",
+    imageUrl: "/events/happy-hour.jpeg",
+    linkUrl: "https://www.opentable.co.uk/r/the-ivy-tree-romford?ref=4208",
+    buttonText: "BOOK A TABLE",
     buttonSuffix: "›",
     isComingSoon: false
   },
@@ -89,7 +88,7 @@ const whatsOnEvents = [
     eyebrow: "SATURDAY & SUNDAY",
     title: "BOTTOMLESS BRUNCH",
     description: "Indulge in our famous bottomless brunch. Delicious plates paired with unlimited prosecco, cocktails, and great music.",
-    imageUrl: "/events/bottomless-brunch_page-0001.jpg",
+    imageUrl: "/events/bottomless-brunch.jpeg",
     pdfUrl: "/events/bottomless-brunch.pdf",
     pdfName: "bottomless-brunch.pdf",
     buttonText: "DISCOVER MORE",
@@ -101,7 +100,7 @@ const whatsOnEvents = [
     eyebrow: "FRIDAY & SATURDAY",
     title: "WEEKLY DJ NIGHTS",
     description: "Elevate your weekend at our upstairs bar and lounge. Live sets from resident DJs playing the best beats till late.",
-    imageUrl: "/events/dj-nights_page-0001.jpg",
+    imageUrl: "/events/dj-nights.jpeg",
     pdfUrl: "/events/dj-nights.pdf",
     pdfName: "dj-nights.pdf",
     buttonText: "DISCOVER MORE",
@@ -228,22 +227,8 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
                   </p>
                 </div>
 
-                {/* Bottom: CTA Link */}
-                <div>
-                  {event.isComingSoon ? (
-                    <span className="inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.25em] text-brand-gold/60 font-semibold cursor-default">
-                      {event.buttonText} {event.buttonSuffix}
-                    </span>
-                  ) : (
-                    <a
-                      href={event.pdfUrl}
-                      download={event.pdfName}
-                      className="inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.25em] text-brand-gold hover:text-white transition-colors font-semibold group/btn cursor-pointer"
-                    >
-                      {event.buttonText} {event.buttonSuffix}
-                    </a>
-                  )}
-                </div>
+                {/* Bottom Spacer to maintain symmetry */}
+                <div className="h-[20px]" />
               </div>
             </motion.div>
           ))}
