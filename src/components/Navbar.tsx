@@ -16,7 +16,7 @@ export default function Navbar({ logoUrl = "/logo.png", reservationUrl }: Navbar
 
   const navLinks = [
     { name: "ABOUT US", href: "/about" },
-    { name: "MENU", href: "#" },
+    { name: "MENU", href: "/menu" },
     { name: "SEMI DINING", href: "/semi-private" },
     { name: "WHAT'S ON", href: "/whats-on" },
     { name: "BLOG", href: "/blog" },

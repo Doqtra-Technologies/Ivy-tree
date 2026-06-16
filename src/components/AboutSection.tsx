@@ -2,77 +2,51 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function AboutSection() {
-  const values = [
-    { title: "Culinary Artistry", desc: "Crafting plates that showcase rich Mediterranean flavors and fresh ingredients." },
-    { title: "Opulent Spaces", desc: "Indulgent interiors designed for memorable dining and exclusive nightlife." },
-    { title: "Bespoke Service", desc: "Warm hospitality customized to create exceptional guest experiences." }
-  ];
-
   return (
-    <section className="py-[120px] bg-brand-dark overflow-hidden border-t border-white/5">
-      <div className="container-content">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-sp-64 lg:gap-sp-96 items-center">
+    <section className="py-[40px] md:py-[60px] bg-brand-dark overflow-hidden border-t border-white/5">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
-          {/* Left Side: Luxury Editorial Image */}
+          {/* Left Side: Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full aspect-[4/5] md:aspect-[1.1] lg:aspect-[4/5] rounded-[16px] overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/10"
+            className="relative w-full aspect-[4/3] overflow-hidden shadow-2xl border border-white/10"
           >
             <Image
               src="/gallery/4.jpg"
-              alt="The Ivy Tree Dining Room"
+              alt="The Ivy Tree"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              className="object-cover"
             />
-            {/* Subtle dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
           </motion.div>
 
-          {/* Right Side: Editorial Content */}
+          {/* Right Side: Text Content (Centered like Rustiq) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="flex flex-col text-left"
+            className="flex flex-col text-center items-center px-2 md:px-6"
           >
-            {/* Eyebrow */}
-            <span className="text-brand-gold uppercase tracking-[0.2em] text-[10px] md:text-xs font-semibold mb-sp-16 block">
-              DISCOVER IVY TREE
-            </span>
-
             {/* Main Heading */}
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-[48px] leading-[1.1] text-white uppercase tracking-wide mb-sp-24">
-              A Symphony of Taste & Ambiance
+            <h2 className="font-sans text-[22px] md:text-[28px] font-bold text-white mb-4">
+              Welcome to The Ivy Tree
             </h2>
 
-            {/* Description */}
-            <p className="text-white/70 text-xs md:text-sm font-sans tracking-wide leading-relaxed mb-sp-32 max-w-[600px]">
-              Step into The Ivy Tree, where modern luxury meets the vibrant essence of Mediterranean hospitality. 
-              Nestled in the heart of Romford, we bring together exquisite culinary craft, curated signature cocktails, 
-              and stunning visual design. Whether joining us for an intimate dinner, a lively weekend brunch, 
-              or exclusive cocktails in our upstairs lounge, every moment is curated to indulge.
-            </p>
-
-            {/* Brand Values Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-sp-24 mb-sp-48 border-t border-b border-white/5 py-sp-32">
-              {values.map((val, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <h4 className="font-serif text-brand-gold text-sm uppercase tracking-wider mb-sp-8">
-                    {val.title}
-                  </h4>
-                  <p className="text-white/50 text-[11px] leading-relaxed">
-                    {val.desc}
-                  </p>
-                </div>
-              ))}
+            {/* Paragraphs */}
+            <div className="space-y-4 text-white/90 text-[15px] md:text-[16px] leading-relaxed max-w-xl">
+              <p>
+                Nestled in the heart of Romford, The Ivy Tree brings together Mediterranean flavors, handcrafted cocktails, and elegant dining. Inspired by coastal traditions and elevated with modern flair, every dish is crafted to create a memorable experience.
+              </p>
+              <p>
+                Whether you're joining us for a relaxed dinner, weekend brunch, or an evening of cocktails and entertainment, The Ivy Tree offers the perfect blend of luxury, warmth, and hospitality.
+              </p>
             </div>
           </motion.div>
 
