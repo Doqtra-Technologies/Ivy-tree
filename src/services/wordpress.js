@@ -90,13 +90,24 @@ export async function getSiteSettings() {
             heading: ws.semiPrivateIntro?.heading || mockData.semiPrivateIntro.heading,
             text: ws.semiPrivateIntro?.text || mockData.semiPrivateIntro.text
           },
-          rooms: ws.rooms && ws.rooms.length > 0 ? ws.rooms.map((room, idx) => ({
-            id: room.id || mockData.rooms[idx]?.id || `room-${idx}`,
-            name: room.name || mockData.rooms[idx]?.name || '',
-            capacity: room.capacity || mockData.rooms[idx]?.capacity || '',
-            description: room.description || mockData.rooms[idx]?.description || '',
-            imageUrl: room.imageUrl || mockData.rooms[idx]?.imageUrl || ''
-          })) : mockData.rooms,
+          rooms: ws.rooms && ws.rooms.length > 0 ? ws.rooms.map((room, idx) => {
+            const matchedMock = mockData.rooms.find(m => m.name.toLowerCase() === room.name?.toLowerCase()) || mockData.rooms[idx] || {};
+            return {
+              id: room.id || matchedMock.id || `room-${idx}`,
+              name: room.name || matchedMock.name || '',
+              capacity: room.capacity || matchedMock.capacity || '',
+              description: room.description || matchedMock.description || '',
+              imageUrl: room.imageUrl || matchedMock.imageUrl || ''
+            };
+          }).sort((a, b) => {
+            const aName = a.name.toLowerCase();
+            const bName = b.name.toLowerCase();
+            if (aName.includes('luna')) return -1;
+            if (bName.includes('luna')) return 1;
+            if (aName.includes('velvet')) return 1;
+            if (bName.includes('velvet')) return -1;
+            return 0;
+          }) : mockData.rooms,
           cocktailBar: {
             heading: ws.cocktailBar?.heading || mockData.cocktailBar.heading,
             text: ws.cocktailBar?.text || mockData.cocktailBar.text,

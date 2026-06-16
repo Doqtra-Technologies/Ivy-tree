@@ -29,11 +29,11 @@ const roomImages = [
 
 const defaultRooms = [
   {
-    id: "velvet",
-    name: "Velvet Room",
-    capacity: "6-8 people",
-    description: "An intimate and plush dining setting wrapped in rich velvet styling, perfect for private family gatherings or corporate dinners.",
-    imageUrl: "/rooms/velvet.png"
+    id: "luna",
+    name: "Luna Room",
+    capacity: "50 people",
+    description: "Our grandest semi-private event room offering a luxurious setting, complete with elegant lighting and premium finishes for large scale receptions.",
+    imageUrl: "/rooms/luna.jpeg"
   },
   {
     id: "apollo",
@@ -43,11 +43,11 @@ const defaultRooms = [
     imageUrl: "/rooms/apollo.png"
   },
   {
-    id: "luna",
-    name: "Luna Room",
-    capacity: "50 people",
-    description: "Our grandest semi-private event room offering a luxurious setting, complete with elegant lighting and premium finishes for large scale receptions.",
-    imageUrl: "/rooms/luna.jpeg"
+    id: "velvet",
+    name: "Velvet Room",
+    capacity: "6-8 people",
+    description: "An intimate and plush dining setting wrapped in rich velvet styling, perfect for private family gatherings or corporate dinners.",
+    imageUrl: "/rooms/velvet.png"
   }
 ];
 
@@ -56,7 +56,16 @@ export default function SemiPrivate({
   rooms = [],
   reservationUrl = "https://www.opentable.co.uk/r/the-ivy-tree-romford?ref=4208"
 }: SemiPrivateProps) {
-  const roomsList = rooms && rooms.length > 0 ? rooms : defaultRooms;
+  // Force correct images in case backend data is swapped
+  const roomsList = (rooms && rooms.length > 0 ? rooms : defaultRooms).map(r => {
+    let forcedImage = r.imageUrl;
+    const cleanId = r.id?.toLowerCase() || "";
+    const cleanName = r.name?.toLowerCase() || "";
+    if (cleanId.includes("velvet") || cleanName.includes("velvet")) forcedImage = "/rooms/velvet.png";
+    if (cleanId.includes("luna") || cleanName.includes("luna")) forcedImage = "/rooms/luna.jpeg";
+    if (cleanId.includes("apollo") || cleanName.includes("apollo")) forcedImage = "/rooms/apollo.png";
+    return { ...r, imageUrl: forcedImage };
+  });
 
   // Helper to remove "Room" and "Area" from room name
   const getCleanName = (name: string) => name.replace(/\s*(room|area)\s*/gi, "").trim();
@@ -64,10 +73,9 @@ export default function SemiPrivate({
   // State for active room bookmark
   const [activeRoomId, setActiveRoomId] = useState("");
 
-  // Default active room to apollo if exists
+  // Default active room to the first room in the list
   useEffect(() => {
-    const hasApollo = roomsList.some((r) => r.id === "apollo");
-    setActiveRoomId(hasApollo ? "apollo" : roomsList[0]?.id || "");
+    setActiveRoomId(roomsList[0]?.id || "");
   }, [rooms]);
 
   const activeRoom = roomsList.find((r) => r.id === activeRoomId) || roomsList[0];
