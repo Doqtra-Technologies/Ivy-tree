@@ -4,7 +4,7 @@ export const mockData = {
   
   hero: {
     videoUrl: "/homepage/banner/banner.mp4",
-    heading: "Experience the vibrant essence of Mediterranean dining",
+    heading: "Restaurant | Brasserie | Lounge Bar",
     subheading: "Rustiq: A taste of the Mediterranean, served in the heart of Romford. Stylish interiors, a cozy ambiance, and a warm welcome await."
   },
   
@@ -15,11 +15,11 @@ export const mockData = {
   
   rooms: [
     {
-      id: "velvet",
-      name: "Velvet Room",
-      capacity: "6-8 people",
-      description: "An intimate and plush dining setting wrapped in rich velvet styling, perfect for private family gatherings or corporate dinners.",
-      imageUrl: "/rooms/velvet.png"
+      id: "luna",
+      name: "Luna Room",
+      capacity: "50 people",
+      description: "Our grandest semi-private event room offering a luxurious setting, complete with elegant lighting and premium finishes for large scale receptions.",
+      imageUrl: "/rooms/luna.jpeg"
     },
     {
       id: "apollo",
@@ -29,11 +29,11 @@ export const mockData = {
       imageUrl: "/rooms/apollo.png"
     },
     {
-      id: "luna",
-      name: "Luna Room",
-      capacity: "50 people",
-      description: "Our grandest semi-private event room offering a luxurious setting, complete with elegant lighting and premium finishes for large scale receptions.",
-      imageUrl: "/rooms/luna.jpeg"
+      id: "velvet",
+      name: "Velvet Room",
+      capacity: "6-8 people",
+      description: "An intimate and plush dining setting wrapped in rich velvet styling, perfect for private family gatherings or corporate dinners.",
+      imageUrl: "/rooms/velvet.png"
     }
   ],
   

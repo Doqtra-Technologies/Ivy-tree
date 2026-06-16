@@ -213,7 +213,7 @@ export default function SemiPrivate({
                   alt={activeRoom.name}
                   fill
                   sizes="100vw"
-                  className="object-cover transition-all duration-700 hover:scale-[1.01]"
+                  className={`transition-all duration-700 hover:scale-[1.01] ${activeRoom.id === 'velvet' ? 'object-contain' : 'object-cover'}`}
                   priority
                 />
               </div>

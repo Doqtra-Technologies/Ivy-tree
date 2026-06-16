@@ -53,7 +53,7 @@ export default function ServiceCards() {
                 alt={offering.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover transition-transform duration-750 ease-out group-hover:scale-105"
+                className={`transition-transform duration-750 ease-out group-hover:scale-105 ${offering.id === 'semi-private' ? 'object-contain p-4 bg-[#1a1a1a]' : 'object-cover'}`}
               />
               
               {/* Dark Overlay */}

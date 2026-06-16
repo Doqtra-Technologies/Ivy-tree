@@ -83,7 +83,7 @@ export default function Hero({
           className="font-sans font-medium text-white text-[24px] md:text-[36px] lg:text-[48px] text-center w-full max-w-[1200px]"
           style={{ textShadow: "0px 4px 20px rgba(0,0,0,0.8)" }}
         >
-          {heading || "Experience the vibrant essence of Mediterranean dining"}
+          {heading || "Restaurant | Brasserie | Lounge Bar"}
         </motion.h1>
       </div>
 
