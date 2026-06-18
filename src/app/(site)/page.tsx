@@ -32,11 +32,19 @@ export default async function Home() {
   const contactData = await ContactRepository.getContactData();
   const galleryData = await GalleryRepository.getGallery();
 
+  const getFallbackImage = (id: string) => {
+    if (id === 'event-dj-nights') return '/events/dj-nights.jpeg';
+    if (id === 'event-bottomless-brunch') return '/events/bottomless-brunch.jpeg';
+    if (id === 'event-kids-eat-free') return '/events/kids-eat-free_page-0001.jpg';
+    if (id === 'event-happy-hour') return '/events/happy-hour.jpeg';
+    return `/events/${id.replace('event-', '')}_page-0001.jpg`;
+  };
+
   // Map events for the homepage view
   const displayEvents = whatsOnData.events.slice(0, 3).map((evt) => ({
     id: evt.id,
     title: evt.title,
-    imageUrl: evt.imageUrl || `/events/${evt.id.replace('event-', '')}_page-0001.jpg`,
+    imageUrl: evt.imageUrl || getFallbackImage(evt.id),
   }));
 
   const classNames = [

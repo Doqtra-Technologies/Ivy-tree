@@ -16,6 +16,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function WhatsOnPage() {
   const whatsOnData = await EventRepository.getWhatsOnData();
 
+  const getFallbackImage = (id: string) => {
+    if (id === 'event-dj-nights') return '/events/dj-nights.jpeg';
+    if (id === 'event-bottomless-brunch') return '/events/bottomless-brunch.jpeg';
+    if (id === 'event-kids-eat-free') return '/events/kids-eat-free_page-0001.jpg';
+    if (id === 'event-happy-hour') return '/events/happy-hour.jpeg';
+    return `/events/${id.replace('event-', '')}_page-0001.jpg`;
+  };
+
   // Combine fetched events with default UI properties that the component expects
   const displayEvents = whatsOnData.events.map((evt, idx) => {
     return {
@@ -25,7 +33,7 @@ export default async function WhatsOnPage() {
       buttonSuffix: "›",
       isComingSoon: false,
       pdfName: evt.pdfUrl ? evt.pdfUrl.split('/').pop() : "menu.pdf",
-      imageUrl: evt.imageUrl || `/events/${evt.id.replace('event-', '')}_page-0001.jpg`, 
+      imageUrl: evt.imageUrl || getFallbackImage(evt.id), 
     };
   });
 
