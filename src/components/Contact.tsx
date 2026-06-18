@@ -2,8 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ContactPageData } from "@/data/repositories/contact-repository";
 
-export default function Contact() {
+interface ContactProps {
+  data: ContactPageData;
+}
+
+export default function Contact({ data }: ContactProps) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -73,8 +78,8 @@ export default function Contact() {
                     <span className="text-white text-xs font-bold tracking-[0.2em] uppercase underline decoration-brand-gold decoration-2 underline-offset-4 pb-1">
                       CALL US
                     </span>
-                    <a href="tel:01708208566" className="text-white/80 hover:text-brand-gold text-sm font-sans tracking-wide transition-colors mt-2">
-                      01708 208566
+                    <a href={`tel:${data.phone.replace(/\s+/g, '')}`} className="text-white/80 hover:text-brand-gold text-sm font-sans tracking-wide transition-colors mt-2">
+                      {data.phone}
                     </a>
                   </div>
                 </div>
@@ -90,8 +95,8 @@ export default function Contact() {
                     <span className="text-white text-xs font-bold tracking-[0.2em] uppercase underline decoration-brand-gold decoration-2 underline-offset-4 pb-1">
                       EMAIL
                     </span>
-                    <a href="mailto:info.theivytree@gmail.com" className="text-white/80 hover:text-brand-gold text-sm font-sans tracking-wide transition-colors mt-2">
-                      info.theivytree@gmail.com
+                    <a href={`mailto:${data.email}`} className="text-white/80 hover:text-brand-gold text-sm font-sans tracking-wide transition-colors mt-2">
+                      {data.email}
                     </a>
                   </div>
                 </div>
@@ -109,7 +114,7 @@ export default function Contact() {
                       ADDRESS
                     </span>
                     <p className="text-white/80 text-sm font-sans tracking-wide mt-2 leading-relaxed">
-                      113-117 South St, Romford RM1 1NX
+                      {data.address}
                     </p>
                   </div>
                 </div>
@@ -124,22 +129,12 @@ export default function Contact() {
                   <div className="flex-grow h-[1px] bg-white/10" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-white/60 text-xs md:text-sm leading-relaxed font-sans">
-                  <div>
-                    <span className="block font-semibold text-white/80 mb-0.5">Monday – Wednesday</span>
-                    <span className="block">10:00 AM – 12:00 AM</span>
-                  </div>
-                  <div>
-                    <span className="block font-semibold text-white/80 mb-0.5">Thursday</span>
-                    <span className="block">10:00 AM – 01:00 AM</span>
-                  </div>
-                  <div>
-                    <span className="block font-semibold text-white/80 mb-0.5">Friday & Saturday</span>
-                    <span className="block">10:00 AM – 02:00 AM</span>
-                  </div>
-                  <div>
-                    <span className="block font-semibold text-white/80 mb-0.5">Sunday</span>
-                    <span className="block">10:00 AM – 12:00 AM</span>
-                  </div>
+                  {data.openingHours.map((slot, i) => (
+                    <div key={i}>
+                      <span className="block font-semibold text-white/80 mb-0.5">{slot.day}</span>
+                      <span className="block">{slot.hours}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>

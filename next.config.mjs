@@ -3,6 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["framer-motion"],
   images: {
+    qualities: [75, 95],
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: 'http',
@@ -18,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '**.wp.com',
+        hostname: 'cdn.sanity.io',
         port: '',
         pathname: '/**',
       }

@@ -111,9 +111,13 @@ const whatsOnEvents = [
 
 interface EventsSectionProps {
   isHomepage?: boolean;
+  events?: any[];
 }
 
-export default function EventsSection({ isHomepage = false }: EventsSectionProps) {
+export default function EventsSection({ isHomepage = false, events = [] }: EventsSectionProps) {
+  // Use passed events, or fallback to the hardcoded ones if not provided yet.
+  const displayEvents = events.length > 0 ? events : (isHomepage ? homepageEvents : whatsOnEvents);
+
   if (isHomepage) {
     return (
       <section className="py-[60px] bg-brand-gold">
@@ -133,7 +137,7 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
 
           {/* 3-Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-[1300px] mx-auto mb-10">
-            {homepageEvents.map((event, index) => (
+            {displayEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -186,7 +190,7 @@ export default function EventsSection({ isHomepage = false }: EventsSectionProps
       {/* 3-Card Responsive Grid */}
       <div className="bg-brand-dark py-20 px-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {whatsOnEvents.map((event, index) => (
+          {displayEvents.map((event, index) => (
             <motion.div
               key={event.id}
               initial={{ opacity: 0, y: 30 }}

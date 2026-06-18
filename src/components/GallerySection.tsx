@@ -9,21 +9,12 @@ interface GalleryItem {
   className: string;
 }
 
-// Staggered layout configurations for a premium editorial grid
-const galleryItems: GalleryItem[] = [
-  { src: "/gallery/1.jpg", alt: "Ivy Tree interior table styling", className: "md:col-span-2 md:row-span-2 aspect-square md:aspect-auto" },
-  { src: "/gallery/2.jpg", alt: "Plush cocktail seating", className: "aspect-square" },
-  { src: "/gallery/3.jpg", alt: "Premium dining presentation", className: "aspect-square" },
-  { src: "/gallery/4.jpg", alt: "Outdoor garden facade", className: "md:row-span-2 aspect-[3/4] md:aspect-auto" },
-  { src: "/gallery/5.jpg", alt: "Expertly crafted cocktails", className: "aspect-square" },
-  { src: "/gallery/6.jpg", alt: "Intimate bar setup", className: "md:col-span-2 aspect-[2/1] md:aspect-auto" },
-  { src: "/gallery/7.jpg", alt: "Floral details and lounge", className: "aspect-square" },
-  { src: "/gallery/8.jpg", alt: "Fresh Mediterranean entrees", className: "aspect-square" },
-  { src: "/gallery/9.jpg", alt: "Cozy velvet booths", className: "md:col-span-2 aspect-[2/1] md:aspect-auto" },
-  { src: "/gallery/10.jpg", alt: "Evening lighting atmosphere", className: "aspect-square" },
-];
+interface GallerySectionProps {
+  images?: GalleryItem[];
+}
 
-export default function GallerySection() {
+export default function GallerySection({ images = [] }: GallerySectionProps) {
+  if (!images || images.length === 0) return null;
   return (
     <section className="py-[120px] bg-brand-secondary border-t border-white/5">
       <div className="container-content">
@@ -56,7 +47,7 @@ export default function GallerySection() {
 
         {/* Premium Masonry Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-sp-16 auto-rows-[250px] md:auto-rows-[300px]">
-          {galleryItems.map((item, index) => (
+          {images.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
