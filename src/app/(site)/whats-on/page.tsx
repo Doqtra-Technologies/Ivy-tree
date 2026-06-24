@@ -25,10 +25,17 @@ export default async function WhatsOnPage() {
   };
 
   // Combine fetched events with default UI properties that the component expects
-  const displayEvents = whatsOnData.events.map((evt, idx) => {
+  const displayEvents = whatsOnData.events.map((evt) => {
+    const idLower = evt.id.toLowerCase();
+    const eyebrow = idLower.includes("happy-hour")
+      ? "WEEKDAYS SPECIAL"
+      : idLower.includes("bottomless-brunch")
+      ? "SATURDAY & SUNDAY"
+      : "FRIDAY & SATURDAY";
+
     return {
       ...evt,
-      eyebrow: idx === 0 ? "FAMILY SPECIAL" : (idx === 1 ? "SATURDAY & SUNDAY" : "FRIDAY & SATURDAY"),
+      eyebrow,
       buttonText: "DISCOVER MORE",
       buttonSuffix: "›",
       isComingSoon: false,
