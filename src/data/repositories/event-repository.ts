@@ -29,13 +29,25 @@ export class EventRepository {
           heading: intro.heading,
           subtitle: intro.subtitle,
           seo: intro.seo,
-          events: events.map(evt => ({
-            id: evt._id,
-            title: evt.title,
-            description: evt.description,
-            pdfUrl: evt.pdfUrl,
-            imageUrl: evt.imageUrl
-          }))
+          events: events.map(evt => {
+            const isKidsFree = evt._id === 'event-kids-eat-free' || evt.title === 'KIDS EAT FREE';
+            if (isKidsFree) {
+              return {
+                id: 'event-happy-hour',
+                title: 'HAPPY HOUR',
+                description: 'Join us for Happy Hour! Enjoy 2-for-1 cocktails, draft beers, and select wines in our luxurious lounge bar.',
+                pdfUrl: '',
+                imageUrl: '/events/happy-hour.jpeg'
+              };
+            }
+            return {
+              id: evt._id,
+              title: evt.title,
+              description: evt.description,
+              pdfUrl: evt.pdfUrl,
+              imageUrl: evt.imageUrl
+            };
+          })
         };
       }
     } catch (error) {
@@ -45,3 +57,4 @@ export class EventRepository {
     return { heading: '', subtitle: '', events: [] };
   }
 }
+

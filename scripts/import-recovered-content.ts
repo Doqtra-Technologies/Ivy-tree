@@ -200,7 +200,7 @@ async function main() {
   // ---------------------------------------------------------
   console.log("Uploading Events...");
   const events = [
-    { id: "kids-eat-free", title: "KIDS EAT FREE", description: "Join us during school holidays for family-friendly dining where kids eat completely free. Check out our special menu.", pdfUrl: "/events/kids-eat-free.pdf" },
+    { id: "happy-hour", title: "HAPPY HOUR", description: "Join us for Happy Hour! Enjoy 2-for-1 cocktails, draft beers, and select wines in our luxurious lounge bar.", pdfUrl: "" },
     { id: "bottomless-brunch", title: "BOTTOMLESS PROSECCO BRUNCH", description: "Indulge in a Mediterranean feast with bottomless Prosecco, crafted cocktails, and a lively vibe every weekend.", pdfUrl: "/events/bottomless-brunch.pdf" },
     { id: "dj-nights", title: "DJ NIGHTS", description: "Experience our upstairs cocktail bar coming alive on Friday & Saturday nights with live DJ sets and a premium crowd.", pdfUrl: "/events/dj-nights.pdf" }
   ];
