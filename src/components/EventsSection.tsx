@@ -114,6 +114,14 @@ interface EventsSectionProps {
   events?: any[];
 }
 
+// Events with their own dedicated page. Ids arrive as either "bottomless-brunch"
+// or the Sanity-prefixed "event-bottomless-brunch".
+const eventPages: Record<string, string> = {
+  "bottomless-brunch": "/bottomless-prosecco-brunch",
+};
+
+const getEventPage = (id: string) => eventPages[id.replace(/^event-/, "")];
+
 export default function EventsSection({ isHomepage = false, events = [] }: EventsSectionProps) {
   // Use passed events, or fallback to the hardcoded ones if not provided yet.
   const displayEvents = events.length > 0 ? events : (isHomepage ? homepageEvents : whatsOnEvents);
@@ -137,31 +145,47 @@ export default function EventsSection({ isHomepage = false, events = [] }: Event
 
           {/* 3-Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-[1300px] mx-auto mb-10">
-            {displayEvents.map((event, index) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-center group"
-              >
-                {/* Title Above Image */}
-                <h3 className="font-serif text-sm md:text-base text-brand-dark font-bold uppercase tracking-wider text-center mb-4 min-h-[20px] flex items-center justify-center">
-                  {event.title}
-                </h3>
-                {/* Flyer Image Container */}
-                <div className="relative aspect-[2/3] w-full overflow-hidden border border-brand-dark/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-                  <Image
-                    src={event.imageUrl}
-                    alt={event.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-              </motion.div>
-            ))}
+            {displayEvents.map((event, index) => {
+              const eventPage = getEventPage(event.id);
+
+              const card = (
+                <>
+                  {/* Title Above Image */}
+                  <h3 className="font-serif text-sm md:text-base text-brand-dark font-bold uppercase tracking-wider text-center mb-4 min-h-[20px] flex items-center justify-center">
+                    {event.title}
+                  </h3>
+                  {/* Flyer Image Container */}
+                  <div className="relative aspect-[2/3] w-full overflow-hidden border border-brand-dark/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <Image
+                      src={event.imageUrl}
+                      alt={event.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </>
+              );
+
+              return (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col items-center group"
+                >
+                  {eventPage ? (
+                    <Link href={eventPage} className="flex flex-col items-center w-full">
+                      {card}
+                    </Link>
+                  ) : (
+                    card
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* View More Button */}
@@ -234,6 +258,15 @@ export default function EventsSection({ isHomepage = false, events = [] }: Event
                 {/* Bottom Spacer to maintain symmetry */}
                 <div className="h-[20px]" />
               </div>
+
+              {/* Full-card link for events with a dedicated page */}
+              {getEventPage(event.id) && (
+                <Link
+                  href={getEventPage(event.id)}
+                  aria-label={event.title}
+                  className="absolute inset-0 z-30"
+                />
+              )}
             </motion.div>
           ))}
         </div>

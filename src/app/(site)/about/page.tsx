@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us | The Ivy Tree Romford",
-  description: "Learn more about the story behind The Ivy Tree Romford, our passion for Mediterranean dining, and our exquisite culinary experiences.",
+  description: "Good food. Great drinks. Late nights. Ivy Tree Romford brings together modern dining, handcrafted cocktails and live entertainment under one roof.",
   alternates: { canonical: "https://www.ivytreeessex.co.uk/about" }
 };
 
