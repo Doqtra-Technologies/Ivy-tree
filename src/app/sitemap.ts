@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/cocktail-bar',
     '/semi-private',
     '/whats-on',
+    '/bottomless-prosecco-brunch',
     '/blog',
   ].map((route) => ({
     url: `${baseUrl}${route}`,

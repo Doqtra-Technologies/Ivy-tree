@@ -37,16 +37,16 @@ export default function AboutSection() {
           >
             {/* Main Heading */}
             <h2 className="font-sans text-[22px] md:text-[28px] font-bold text-white mb-4">
-              Welcome to The Ivy Tree
+              Good food. Great drinks. Late nights.
             </h2>
 
             {/* Paragraphs */}
             <div className="space-y-4 text-white/90 text-[15px] md:text-[16px] leading-relaxed max-w-xl">
               <p>
-                Nestled in the heart of Romford, The Ivy Tree brings together Mediterranean flavors, handcrafted cocktails, and elegant dining. Inspired by coastal traditions and elevated with modern flair, every dish is crafted to create a memorable experience.
+                Located in the heart of Romford, Ivy Tree brings together modern dining, handcrafted cocktails and unforgettable entertainment under one roof.
               </p>
               <p>
-                Whether you're joining us for a relaxed dinner, weekend brunch, or an evening of cocktails and entertainment, The Ivy Tree offers the perfect blend of luxury, warmth, and hospitality.
+                Join us for breakfast, lunch, dinner or our popular Saturday Bottomless Prosecco Brunch with live music. As the day turns into night, enjoy cocktails, live entertainment and DJs every Friday and Saturday.
               </p>
             </div>
           </motion.div>
