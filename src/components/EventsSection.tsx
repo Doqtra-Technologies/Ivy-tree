@@ -85,7 +85,7 @@ const whatsOnEvents = [
   },
   {
     id: "bottomless-brunch",
-    eyebrow: "SATURDAY & SUNDAY",
+    eyebrow: "SATURDAY ONLY",
     title: "BOTTOMLESS BRUNCH",
     description: "Indulge in our famous bottomless brunch. Delicious plates paired with unlimited prosecco, cocktails, and great music.",
     imageUrl: "/events/bottomless-brunch.jpeg",

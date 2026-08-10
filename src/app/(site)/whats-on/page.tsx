@@ -30,7 +30,7 @@ export default async function WhatsOnPage() {
     const eyebrow = idLower.includes("happy-hour")
       ? "WEEKDAYS SPECIAL"
       : idLower.includes("bottomless-brunch")
-      ? "SATURDAY & SUNDAY"
+      ? "SATURDAY ONLY"
       : "FRIDAY & SATURDAY";
 
     return {

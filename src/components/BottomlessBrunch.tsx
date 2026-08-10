@@ -32,7 +32,7 @@ export default function BottomlessBrunch({
             className="flex flex-col text-left order-2 lg:order-1"
           >
             <span className="text-brand-gold uppercase tracking-[0.2em] text-[10px] md:text-xs font-semibold mb-sp-16 block">
-              EVERY SATURDAY | 1:00 PM &ndash; 5:00 PM
+              SATURDAY ONLY | 1:00 PM &ndash; 5:00 PM
             </span>
 
             <h2 className="font-serif text-3xl md:text-4xl lg:text-[48px] leading-[1.1] text-white uppercase tracking-wide mb-sp-24">
