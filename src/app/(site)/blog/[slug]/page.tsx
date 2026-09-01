@@ -1,7 +1,5 @@
-import { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { PortableText } from "next-sanity";
 import { BlogRepository } from "@/data/repositories/blog-repository";
 import { Metadata } from "next";
 
@@ -9,6 +7,11 @@ export const revalidate = 60;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const posts = await BlogRepository.getPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 import { generatePageMetadata } from "@/utils/seo";
@@ -112,8 +115,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             <div className="space-y-6 text-[#4a4a4a] font-sans text-xs md:text-sm leading-relaxed tracking-wide font-medium portable-text-container">
-              {post.body ? (
-                <PortableText value={post.body} />
+              {post.body && post.body.length > 0 ? (
+                post.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)
               ) : (
                 <p>{post.excerpt}</p>
               )}

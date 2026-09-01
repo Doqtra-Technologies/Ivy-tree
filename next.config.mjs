@@ -17,12 +17,6 @@ const nextConfig = {
         hostname: '*.local',
         port: '',
         pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-        port: '',
-        pathname: '/**',
       }
     ],
   },

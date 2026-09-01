@@ -115,7 +115,7 @@ interface EventsSectionProps {
 }
 
 // Events with their own dedicated page. Ids arrive as either "bottomless-brunch"
-// or the Sanity-prefixed "event-bottomless-brunch".
+// or the prefixed "event-bottomless-brunch".
 const eventPages: Record<string, string> = {
   "bottomless-brunch": "/bottomless-prosecco-brunch",
 };
@@ -201,7 +201,8 @@ export default function EventsSection({ isHomepage = false, events = [] }: Event
       </section>
     );
   }
-  // Original What's On page version
+
+  // Original What's On page version
   return (
     <div className="bg-brand-dark min-h-screen">
       {/* Gold Header Bar */}

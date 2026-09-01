@@ -1,5 +1,4 @@
-import { sanityFetch } from '@/sanity/fetch';
-import { allPostsQuery, postBySlugQuery, recentPostsQuery } from '@/sanity/queries/blog';
+import { blogPostsContent } from '@/data/content';
 
 export interface BlogPost {
   title: string;
@@ -11,44 +10,25 @@ export interface BlogPost {
   excerpt: string;
   imageUrl: string;
   publishedAt: string;
-  body?: any[];
-  seo?: import('@/utils/seo').SanitySeo;
+  /** Body paragraphs, rendered in order. */
+  body?: string[];
+  seo?: import('@/utils/seo').PageSeo;
 }
+
+const posts: BlogPost[] = [...blogPostsContent].sort(
+  (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+);
 
 export class BlogRepository {
   static async getPosts(): Promise<BlogPost[]> {
-    try {
-      const posts = await sanityFetch<BlogPost[]>({ query: allPostsQuery });
-      return posts || [];
-    } catch (error) {
-      console.error('Error fetching blog posts:', error);
-      return [];
-    }
+    return posts;
   }
 
   static async getPostBySlug(slug: string): Promise<BlogPost | null> {
-    try {
-      const post = await sanityFetch<BlogPost>({ 
-        query: postBySlugQuery,
-        params: { slug }
-      });
-      return post || null;
-    } catch (error) {
-      console.error(`Error fetching blog post by slug (${slug}):`, error);
-      return null;
-    }
+    return posts.find((post) => post.slug === slug) || null;
   }
 
   static async getRecentPosts(limit: number = 3): Promise<BlogPost[]> {
-    try {
-      const posts = await sanityFetch<BlogPost[]>({ 
-        query: recentPostsQuery,
-        params: { limit }
-      });
-      return posts || [];
-    } catch (error) {
-      console.error('Error fetching recent blog posts:', error);
-      return [];
-    }
+    return posts.slice(0, limit);
   }
 }

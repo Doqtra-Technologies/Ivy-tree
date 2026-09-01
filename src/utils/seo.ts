@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-export interface SanitySeo {
+export interface PageSeo {
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string;
@@ -9,7 +9,7 @@ export interface SanitySeo {
   noIndex?: boolean;
 }
 
-export function generatePageMetadata(seo?: SanitySeo, fallbackUrl?: string): Metadata {
+export function generatePageMetadata(seo?: PageSeo, fallbackUrl?: string): Metadata {
   if (!seo) return {};
 
   const metadata: Metadata = {};

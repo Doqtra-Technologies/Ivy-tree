@@ -1,5 +1,4 @@
-import { sanityFetch } from '@/sanity/fetch';
-import { homepageQuery } from '@/sanity/queries/homepage';
+import { homepageContent } from '@/data/content';
 
 export interface HomepageData {
   hero: {
@@ -7,29 +6,18 @@ export interface HomepageData {
     subheading: string;
     videoUrl: string;
   };
-  seo?: import('@/utils/seo').SanitySeo;
+  seo?: import('@/utils/seo').PageSeo;
 }
 
 export class HomepageRepository {
   static async getHomepage(): Promise<HomepageData> {
-    try {
-      const data = await sanityFetch<any>({ query: homepageQuery });
-      if (data) {
-        return {
-          hero: {
-            heading: data.hero?.heading || '',
-            subheading: data.hero?.subheading || '',
-            videoUrl: data.hero?.videoUrl || ''
-          },
-          seo: data.seo
-        };
-      }
-    } catch (error) {
-      console.error('Sanity fetch failed for homepage:', error);
-    }
-
     return {
-      hero: { heading: '', subheading: '', videoUrl: '' }
+      hero: {
+        heading: homepageContent.hero.heading,
+        subheading: homepageContent.hero.subheading,
+        videoUrl: homepageContent.hero.videoUrl,
+      },
+      seo: homepageContent.seo,
     };
   }
 }
