@@ -1,0 +1,14 @@
+/**
+ * Sanity configuration. All values are optional: when the project ID or
+ * dataset are missing the site falls back to the static copy in
+ * `src/data/content.ts`, so builds never fail for lack of CMS credentials.
+ */
+
+export const apiVersion =
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-02-19'
+
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || ''
+
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+
+export const isSanityConfigured = Boolean(projectId)

@@ -1,11 +1,11 @@
 /**
- * Static site content.
+ * Static fallback content.
  *
- * Single source of truth for all editable copy, images and PDFs. Replaces the
- * previous Sanity CMS backend so the site builds and deploys to a plain Node
- * host with no external services or API keys.
+ * Copy, images and PDFs are edited in Sanity Studio (/studio). The values
+ * below are used when Sanity is not configured, unreachable, or a field is
+ * left blank, so the site always builds and renders without CMS credentials.
  *
- * To change copy on the site, edit the values below and redeploy.
+ * `npm run sanity:seed` uploads this content to Sanity as a starting point.
  */
 
 export interface PageSeo {

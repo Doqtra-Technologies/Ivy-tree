@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:seed": "sanity exec scripts/seed-sanity.ts --with-user-token --"
   },
   "dependencies": {
     "@swc/helpers": "0.5.15",
@@ -15,9 +16,12 @@
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.18.0",
     "next": "^16.2.9",
+    "next-sanity": "^13.4.0",
     "postcss": "^8.4.31",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "sanity": "^6.20.0",
+    "styled-components": "^6.6.0",
     "tailwind-merge": "^2.0.0",
     "tailwindcss": "^3.4.1"
   },

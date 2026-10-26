@@ -1,4 +1,7 @@
 import { homepageContent } from '@/data/content';
+import { pick, sanityFetch } from '@/sanity/fetch';
+import { homepageQuery } from '@/sanity/queries';
+import type { PageSeo } from '@/utils/seo';
 
 export interface HomepageData {
   hero: {
@@ -6,18 +9,24 @@ export interface HomepageData {
     subheading: string;
     videoUrl: string;
   };
-  seo?: import('@/utils/seo').PageSeo;
+  seo?: PageSeo;
 }
 
 export class HomepageRepository {
   static async getHomepage(): Promise<HomepageData> {
+    const cms = await sanityFetch<{ hero?: Partial<HomepageData['hero']>; seo?: PageSeo }>({
+      query: homepageQuery,
+      tags: ['homepage'],
+    });
+    const fallback = homepageContent;
+
     return {
       hero: {
-        heading: homepageContent.hero.heading,
-        subheading: homepageContent.hero.subheading,
-        videoUrl: homepageContent.hero.videoUrl,
+        heading: pick(cms?.hero?.heading, fallback.hero.heading),
+        subheading: pick(cms?.hero?.subheading, fallback.hero.subheading),
+        videoUrl: pick(cms?.hero?.videoUrl, fallback.hero.videoUrl),
       },
-      seo: homepageContent.seo,
+      seo: cms?.seo ?? fallback.seo,
     };
   }
 }

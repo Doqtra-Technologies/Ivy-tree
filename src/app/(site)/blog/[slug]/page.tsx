@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlogRepository } from "@/data/repositories/blog-repository";
 import { Metadata } from "next";
+import { PortableText } from "next-sanity";
 
 export const revalidate = 60;
 
@@ -116,7 +117,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             <div className="space-y-6 text-[#4a4a4a] font-sans text-xs md:text-sm leading-relaxed tracking-wide font-medium portable-text-container">
               {post.body && post.body.length > 0 ? (
-                post.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)
+                <PortableText value={post.body} />
               ) : (
                 <p>{post.excerpt}</p>
               )}
